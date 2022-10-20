@@ -27,7 +27,15 @@ int main(int argc, char **argv)
     printM128I0(sh1, "One Shifted Twice");
 
     int shift = 4;
+
+#if 1 && (defined(__arm__) || defined(__aarch64__))
+    auto shV = _mm_set1_epi32(shift);
+    auto res = vshlq_s32(simde__m128i_to_neon_i32(oneI), vdupq_n_s32(shift));
+
+    auto sh4 = simde__m128i_from_neon_i32(res);
+#else
     auto sh4 = _mm_slli_epi32(oneI, shift);
+#endif
     printM128I0(sh1, "One Shifted Four");
 }
 
