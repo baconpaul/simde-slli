@@ -33,7 +33,6 @@ int main(int argc, char **argv)
     int shift = 4;
 
 #if 1 && (defined(__arm__) || defined(__aarch64__))
-    auto shV = _mm_set1_epi32(shift);
     auto res = vshlq_s32(simde__m128i_to_neon_i32(oneI), vdupq_n_s32(shift));
 
     auto sh4 = simde__m128i_from_neon_i32(res);
