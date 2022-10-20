@@ -13,6 +13,10 @@ void printM128I0(__m128i v, const char* pfx)
    std::cout << pfx << " ";
    auto sv = _mm_shuffle_epi32(v, _MM_SHUFFLE(0,0,0,0));
    auto iv = _mm_cvtsi128_si32(sv);
+   std::cout << std::hex << iv << " "; 
+
+   sv = _mm_shuffle_epi32(v, _MM_SHUFFLE(1,1,1,1));
+   iv = _mm_cvtsi128_si32(sv);
    std::cout << std::hex << iv << std::endl;
 }
 
